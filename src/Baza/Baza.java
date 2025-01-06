@@ -10,7 +10,7 @@ public class Baza {
 	
 	public Baza(){
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost/KP","root","");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/db_shop","root","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,5 +105,18 @@ public class Baza {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public Oglas getOglasById(int id) {
+		try {
+			PreparedStatement stmt = con.prepareStatement("SELECT * from oglas where id= '" + id + "'");
+			ResultSet res = stmt.executeQuery();
+			while(res.next()) {
+				return new Oglas(res.getInt("id"), res.getString("naslov"), getUserById(res.getInt("id_korisnika")),res.getString("path_slike"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

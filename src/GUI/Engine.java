@@ -18,8 +18,10 @@ public class Engine {
 	private static Engine engine = null;
 	String username;
 	int id;
+	int id_oglasa;
 	private Engine() {
 		baza = new Baza();
+		id_oglasa = 1;
 	}
 	
 	public static synchronized Engine getEngine() {
@@ -71,5 +73,14 @@ public class Engine {
 	}
 	public void addAdmin(String username, String password) {
 		baza.addAdmin(username, SHA1.SHA1(password));
+	}
+	public int getIdOglasa() {
+		return id_oglasa;
+	}
+	public void setIdOglasa(int id) {
+		id_oglasa = id;
+	}
+	public Oglas getOglasById(int id) {
+		return baza.getOglasById(id);
 	}
 }

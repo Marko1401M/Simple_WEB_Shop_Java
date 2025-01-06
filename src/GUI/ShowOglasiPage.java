@@ -30,7 +30,7 @@ public class ShowOglasiPage extends JPanel{
 		this.setLayout(null);
 		naslov.setBounds(10, 5, 100, 20);
 		naslov.setText("Prikaz oglasa:");
-		prikazOglasa.setBounds(50,25,250,400);
+		prikazOglasa.setBounds(50,25,350,550);
 		nazad.setText("Nazad");
 		nazad.setBounds(25,540,100,50);
 		nazad.setFont(new Font("Arial",Font.PLAIN,20));
@@ -59,9 +59,23 @@ public class ShowOglasiPage extends JPanel{
 					osveziGUI();
 				}
 			});
+			JButton btn2 = new JButton();
+			btn2.setText("Prikazi");
+			btn2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					if(e.getSource() instanceof JButton) {
+						engine.setIdOglasa(oglas.getId());
+						gui.setPage(new ShowOglas(gui));
+					}
+				}
+			});
 			JLabel temp3 = new JLabel();
 			temp3.setText("Naslov: " + oglas.getNaslov() + ", Autor: " + oglas.getAutor().getUsername());
 			temp2.add(btn);
+			temp2.add(btn2);
 			temp2.add(temp3);
 			temp2.setSize(250, 50);
 			temp.add(temp2);
